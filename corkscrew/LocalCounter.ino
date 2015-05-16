@@ -23,28 +23,26 @@ void loop()
     resistance=(float)(1023-val)*10000/val;
     temperature=1/(log(resistance/10000)/B+1/298.15)-273.15;
     lcd.setCursor(0,0);
-    if(digitalRead(pinButton))
-    {
-    if (temperature >= 28)
-    {
-      lcd.setRGB(255,0,0);
-    }
-    else if (temperature < 28)
-    {
-      lcd.setRGB(0,0,255);
-    }
-    lcd.print(temperature);
-    lcd.print("I love tai very much");
-    Serial.println(temperature);
-    delay(10000);
-    lcd.display();
+    if(digitalRead(pinButton)) {
 
-    delay(10000);
-    lcd.noDisplay();
+	if (temperature >= 28) {
+	    lcd.setRGB(255,0,0);
+        } else if (temperature < 28) {
+	    lcd.setRGB(0,0,255);
+        }
+
+        lcd.print(temperature);
+        lcd.print("I love tai very much");
+        Serial.println(temperature);
+        delay(10000);
+        lcd.display();
+
+        delay(10000);
+        lcd.noDisplay();
+
     }
-    else
-    {
-    lcd.setRGB(0,0,0);
+    else {
+	lcd.setRGB(0,0,0);
     }
 
 }
