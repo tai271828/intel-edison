@@ -8,6 +8,8 @@ float temperature;           // Creating temperature variable
 int B=3975;                  // B value of the thermistor
 float resistance;            // Creating resistance variable
 
+int counter = 0;             // total number that bottles have been opened.
+
 void setup()
 {
     lcd.begin(16, 2);
@@ -18,9 +20,10 @@ void setup()
 void loop()
 {
     lcd.noDisplay();
-    lcd.setCursor(0,0);
 
     if(digitalRead(pinButton)) {
+
+        counter++;
 
         int val = analogRead(pinTemp);
         resistance=(float)(1023-val)*10000/val;
@@ -32,6 +35,9 @@ void loop()
 	    lcd.setRGB(0,0,255);
         }
 
+        lcd.setCursor(0, 0);
+        lcd.print(counter);
+        lcd.setCursor(0, 1);
         lcd.print(temperature);
         lcd.display();
 
