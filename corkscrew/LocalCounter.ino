@@ -18,12 +18,13 @@ void setup()
 void loop()
 {
     lcd.noDisplay();
-    delay(500);
-    int val = analogRead(pinTemp);
-    resistance=(float)(1023-val)*10000/val;
-    temperature=1/(log(resistance/10000)/B+1/298.15)-273.15;
     lcd.setCursor(0,0);
+
     if(digitalRead(pinButton)) {
+
+        int val = analogRead(pinTemp);
+        resistance=(float)(1023-val)*10000/val;
+        temperature=1/(log(resistance/10000)/B+1/298.15)-273.15;
 
 	if (temperature >= 28) {
 	    lcd.setRGB(255,0,0);
@@ -32,12 +33,9 @@ void loop()
         }
 
         lcd.print(temperature);
-        lcd.print("I love tai very much");
-        Serial.println(temperature);
-        delay(10000);
         lcd.display();
 
-        delay(10000);
+        delay(1000);
         lcd.noDisplay();
 
     }
